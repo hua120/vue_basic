@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script crossorigin="anonymous" integrity="sha384-+jvb+jCJ37FkNjPyYLI3KJzQeD8pPFXUra3B/QJFqQ3txYrUPIP1eOfxK4h3cKZP" src="https://lib.baomitu.com/vue/2.6.11/vue.js"></script>
+	<script crossorigin="anonymous" integrity="sha384-+O5ZSPkN6TGXt9PxjU2EBQjmscj6Qt5ki7uytTSfvQ5rbd2ZNjHGFX+Zj+GmsCBZ" src="https://lib.baomitu.com/vuex/3.5.1/vuex.js"></script>
+</head>
+<body>
+<div id="app">
+  <p>{{ count }}</p>
+  <p>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </p>
+</div>
+<script>
+Vue.use(Vuex)
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    },
+    decrement (state) {
+      state.count--
+    }
+  }
+})
+
+new Vue({
+  el: '#app',
+  computed: {
+    count () {
+	    return store.state.count
+    }
+  },
+  methods: {
+    increment () {
+      store.commit('increment')
+    },
+    decrement () {
+    	store.commit('decrement')
+    }
+  }
+})
+</script>
+</body>
+</html>
